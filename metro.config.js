@@ -1,11 +1,13 @@
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 
-/**
- * Metro configuration
- * https://reactnative.dev/docs/metro
- *
- * @type {import('metro-config').MetroConfig}
- */
-const config = {};
+const config = {
+    watchFolders:[],
+    maxWorkers: 2
+};
+
+module.exports = (async () => {
+  config.resolver.assetExts = [...config.resolver.assetExts, 'png', 'jpg'];
+  return config;
+})();
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
